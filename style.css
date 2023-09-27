@@ -1,0 +1,43 @@
+.calculator {
+    background: blue;
+    width: max-content;
+    margin: auto;
+}
+
+.display {
+    width: 100%;
+    background-color: aquamarine;
+    height: 50px;
+    font-size: 48px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons{
+    max-width: 400px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+button {
+    flex: 1 25%;
+    padding: 15px;
+    font-size: 26px;
+}
+
+.btn-number {
+    background-color: azure;
+
+}
+
+.btn-operator {
+    background-color: lightgreen;
+}
+
+.btn-equals {
+    background-color: red;
+}
+
+.btn-clear {
+    background-color: purple;
+}
