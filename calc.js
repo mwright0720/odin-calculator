@@ -15,26 +15,88 @@ function divide(a,b) {
     return a / b;
 }
 
-function operate(a,btn-operator, b)
+function operate(a,btnOperator, b)
 {
-    if (btn-operator === "+")
+    a = parseInt(a);
+    b = parseInt(b);
+    if (btnOperator === "+")
     {
         return add(a,b);
     }
 
-    if(btn-operator === "-")
+    if(btnOperator === "-")
     {
         return subtract(a,b);
     }
 
-    if (btn-operator === "*") {
+    if (btnOperator === "*") {
         return multiply(a,b);
     }
 
-    if (btn-operator === "/") {
+    if (btnOperator === "/") {
         return divide(a,b);
     }
 }
-let a = 0;
-let btn-operator = "";
-let b = 0;
+
+function parseInput(value) {
+    let finalInput = [];
+    let delimiter = "";
+    if (value.includes("+"))
+    {
+        delimiter = "+";
+    }
+
+    if (value.includes("-"))
+    {
+        delimiter = "-";
+
+    }
+    if (value.includes("*"))
+    {
+        delimiter = "*";
+
+    }
+    if (value.includes("/"))
+    {
+        delimiter = "/";
+
+    }
+    let splitString = value.split(delimiter);
+    finalInput.push(splitString[0]);
+    finalInput.push(splitString[1]);
+    finalInput.splice(1, 0, delimiter);
+    return finalInput;
+}
+let firstOperand = 0;
+let btnOperator = "";
+let secondOperand = 0;
+
+let displayValue = "";
+
+const buttons = document.querySelectorAll('.btn-number, .btn-operator');
+const display = document.querySelector('.display');
+const equalsBtn = document.querySelector('.btn-equals');
+const clearBtn = document.querySelector('.btn-clear');
+
+
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const btnValue = button.textContent;
+        displayValue += btnValue;
+        display.textContent = displayValue;
+        
+    })
+})
+
+equalsBtn.addEventListener('click', () => {
+    parsedInput = parseInput(display.textContent);
+    result = operate(parsedInput[0], parsedInput[1], parsedInput[2]);
+    display.textContent = result;
+});
+
+clearBtn.addEventListener('click', () => {
+    displayValue = "";
+    display.textContent = displayValue;
+})
+
